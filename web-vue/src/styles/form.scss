@@ -1,0 +1,24 @@
+.form-item_long {
+  // 长的 占一行
+  display: inline-block !important;
+  width: 93% !important;
+  margin-left: 3% !important;
+}
+
+.form-item_long .ant-input,
+.form-item_long .ant-input {
+  width: 100% !important;
+}
+
+.form-item_half {
+  // 短的 占一半
+  display: inline-block !important;
+  width: 45% !important;
+  margin-left: 3% !important;
+  vertical-align: top !important;
+}
+
+.form-item_half .ant-input,
+.form-item_half .ant-input {
+  width: 100% !important;
+}

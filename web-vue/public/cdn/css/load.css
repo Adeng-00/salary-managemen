@@ -1,0 +1,54 @@
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page-home {
+  background-color: #303133;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-home__main {
+  user-select: none;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.page-home__footer {
+  width: 100%;
+  flex-grow: 0;
+  text-align: center;
+  padding: 1em 0;
+}
+
+.page-home__footer > a {
+  font-size: 12px;
+  color: #ababab;
+  text-decoration: none;
+}
+
+.page-home__loading {
+  height: 32px;
+  width: 32px;
+  margin-bottom: 20px;
+}
+
+.page-home__title {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.page-home__sub-title {
+  color: #ababab;
+  font-size: 12px;
+}
