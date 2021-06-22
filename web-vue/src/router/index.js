@@ -2,9 +2,9 @@
  * @Author: cui DengKe
  * @Date: 2021-04-13 17:27:16
  * @LastEditors: cui DengKe
- * @LastEditTime: 2021-06-19 10:44:06
+ * @LastEditTime: 2021-06-22 15:54:09
  * @Description: router 配置 采用History 模式
- * @FilePath: \vue-salary-management\src\router\index.js
+ * @FilePath: \web-vue\src\router\index.js
  */
 
 import { createRouter, createWebHistory } from 'vue-router'
@@ -92,7 +92,7 @@ router.beforeEach((to, from, next) => {
   // 是否在登录状态下
   if (!isEmpty(getStorage("ACCESS_TOKEN"))) {
     if (to.path === '/logoIn') { // 如果已登录，并且是从从登录页面跳转的，那么继续往下走
-      next(from.path)
+      next('/dashBoard')
     } else {  // 如果已登录，但不是从登录页面来跳转的
       if (to.matched.length === 0) {  // 判断此跳转路由的来源路由是否存在，存在的情况跳转到来源路由，否则跳转到 dashBoard
         // next('/404')
