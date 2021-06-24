@@ -2,7 +2,7 @@
  * @Author: cui DengKe
  * @Date: 2021-06-10 20:39:41
  * @LastEditors: cui DengKe
- * @LastEditTime: 2021-06-16 22:52:59
+ * @LastEditTime: 2021-06-24 09:47:50
  * @Description: 公共模块
  * @FilePath: \node-server\services\common\index.js
  */
@@ -113,6 +113,21 @@ const register = async ctx => {
   ctx.write(res)
 }
 
+// 字典获取
+// #region
+/**
+ * @swagger
+ * /common/login:
+ *   post:
+ *     description: 登录 接口 返回token
+ *     tags: [公共模块]
+ *     produces:
+ *       - application/x-www-form-urlencoded
+ *     responses:
+ *       200:
+ *         description: 登入成功
+ */
+// #endregion
 // 登录 接口 返回token
 const login = async ctx => {
   let res;

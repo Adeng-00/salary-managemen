@@ -2,7 +2,7 @@
  * @Author: cui DengKe
  * @Date: 2021-06-10 17:59:14
  * @LastEditors: cui DengKe
- * @LastEditTime: 2021-06-21 10:56:11
+ * @LastEditTime: 2021-06-24 09:44:40
  * @Description: 项目入口文件
  * @FilePath: \node-server\app.js
  */
@@ -13,6 +13,9 @@ const koaStatic = require('koa-static')
 const koaBody = require('koa-body');
 const koaJwt = require('koa-jwt')
 
+const { koaSwagger } = require('koa2-swagger-ui')
+const swagger = require('./config/swagger');
+
 const routers = require('./routers/index.js')
 
 const config = require('./config/default.js');
@@ -21,6 +24,17 @@ const { checkToken } = require('./utils/token-tools')
 const { toHump } = require('./utils/response-format');
 
 const app = new Koa();
+
+// 加入swagger显示接口文档
+app.use(
+  koaSwagger({
+    routePrefix: '/swagger', // host at /swagger instead of default /docs
+    swaggerOptions: {
+      url: '/swagger.json' // example path to json
+    }
+  })
+);
+app.use(swagger.routes(), swagger.allowedMethods());
 
 // 处理log的中间件
 app.use(logger());
@@ -90,6 +104,7 @@ app.use(toHump)
 
 // 配置路由
 app.use(routers.routes(), routers.allowedMethods())
+
 
 // 监听在3000端口
 app.listen(config.port, () => {

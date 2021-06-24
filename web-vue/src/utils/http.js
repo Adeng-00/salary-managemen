@@ -2,9 +2,9 @@
  * @Author: cui DengKe
  * @Date: 2021-04-13 17:54:48
  * @LastEditors: cui DengKe
- * @LastEditTime: 2021-06-18 20:29:54
+ * @LastEditTime: 2021-06-24 09:04:58
  * @Description: axios 二次封装
- * @FilePath: \vue-salary-management\src\utils\http.js
+ * @FilePath: \web-vue\src\utils\http.js
  */
 import axios from 'axios'
 import qs from 'qs'
@@ -27,10 +27,27 @@ axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? '' : '/salary',
     showSpinner: false
   })
 
+// 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
+let pending = [];
+let _cancelToken = axios.CancelToken;
+let removePending = (ever) => {
+  for (let p in pending) {
+    if (pending[p].u === ever.url + '&' + ever.method) { // 当前请求在数组中存在时执行函数体
+      pending[p].f(); // 执行取消操作
+      pending.splice(p, 1); // 把这条记录从数组中移除
+    }
+  }
+}
+
 // http request 请求拦截器
 axios.interceptors.request.use(config => {
   NProgress.start()
   config.headers['Authorization'] = 'Bearer ' + (getStorage('ACCESS_TOKEN') || '') // token
+  removePending(config); // 在一个ajax发送前执行一下取消操作
+  config.cancelToken = new _cancelToken((c) => {
+    // 这里的ajax标识我是用请求地址&请求方式拼接的字符串，当然你可以选择其他的一些方式
+    pending.push({ u: config.url + '&' + config.method, f: c });
+  });
   return config
 },
   error => {
@@ -42,7 +59,7 @@ axios.interceptors.request.use(config => {
 // http response 响应拦截器
 axios.interceptors.response.use(response => {
   NProgress.done()
-
+  removePending(response.config);  //在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
   const status = Number(response.status) || 200
   const _message = response.data.msg || errorCode[status] || errorCode['default']
 
