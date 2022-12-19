@@ -1,12 +1,12 @@
 ### 薪资管理系统
 
-- **项目描述：**为熟悉Vue3+TS的个人项目，为了更多的给自己充电进行了前后端分离，后端采用nodejs。使用Eslint、Husky、Commitlint、Lint-staged规范项目代码。使用Docker、Nginx、Jenkins部署到个人阿里云Centos8服务器。地址: https://salary.dkwuwei.top/logoIn 账号/密码：dengke
+- 项目描述：为熟悉Vue3+TS的个人项目，为了更多的给自己充电进行了前后端分离，后端采用nodejs。使用Eslint、Husky、Commitlint、Lint-staged规范项目代码。使用Docker、Nginx、Jenkins部署到个人阿里云Centos8服务器。地址: https://salary.dkwuwei.top/logoIn 账号/密码：dengke
 
-- **技术栈、框架：**2021年三月使用Vue3.0+Vue CLI+JS+Koa+MySQL(手写简单的sql语句)做第一版；2022年二月使用Vue3.2+Vite+TS+Egg+MySQL+Egg-Sequelize进行重构。
+- 技术栈、框架：2021年三月使用Vue3.0+Vue CLI+JS+Koa+MySQL(手写简单的sql语句)做第一版；2022年二月使用Vue3.2+Vite+TS+Egg+MySQL+Egg-Sequelize进行重构。
 
 ---
 
-**项目亮点：**
+项目亮点：
 
 - 使用Antd进行基础UI架构，对axios、I18n、Echarts等库进行配置封装
 - 封装crud组件，只需数据配置，即可实现增删改查。留有扩展入口，如有特殊功能需求可自定义组件渲染
